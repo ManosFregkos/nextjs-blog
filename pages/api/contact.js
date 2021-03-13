@@ -22,10 +22,10 @@ async function handler(req, res) {
       message,
     };
     let client;
+
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}.j1iir.mongodb.net/my-blog?retryWrites=true&w=majority`;
     try {
-      client = await MongoClient.connect(
-        "mongodb+srv://ManosFr:6944238811e@cluster0.j1iir.mongodb.net/my-blog?retryWrites=true&w=majority"
-      );
+      client = await MongoClient.connect(connectionString);
     } catch (error) {
       res.status(500).json({ message: "Cloud not connect to db" });
       return;
